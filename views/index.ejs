@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+    <form action="/convert" method="POST">
+        <input type="text" name="temp" placeholder="Enter temperature">
+        <select name="fromUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <select name="toUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button type="submit">Convert</button>
+    </form>
+
+    <% if (convertedTemp !== null) { %>
+        <p>Converted Temperature: <%= convertedTemp %> <%= toUnit %></p>
+    <% } %>
+
+    <% if (error) { %>
+        <p style="color:red;"><%= error %></p>
+    <% } %>
+
+    <h2>Conversion History</h2>
+    <ul>
+    <% conversionHistory.forEach(history => { %>
+        <li><%= history.temp %> <%= history.fromUnit %> to <%= history.toUnit %> = <%= history.convertedTemp %></li>
+    <% }) %>
+    </ul>
+</body>
+</html>
